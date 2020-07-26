@@ -6,4 +6,4 @@ An open source project to compile useful social resources in one easy-to-referen
 * To provide a list of resources (digial and tangible) for community members
 * To make the information sortable (TBD in which ways)
 
-Ultimately the goal is to provide people who want to help with a compiled list of where/who/how.
+Empowering people with a compiled list of where/who/how.
