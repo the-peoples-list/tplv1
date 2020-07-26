@@ -1,4 +1,5 @@
 import React from 'react';
+import PrimaryView from "./PrimaryView/PrimaryView";
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -27,7 +28,7 @@ export default function App() {
 
 function Home() {
 	return (
-		'hi'
+		<PrimaryView />
 	);
 }
 
