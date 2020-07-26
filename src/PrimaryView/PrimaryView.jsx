@@ -4,7 +4,7 @@ import TangibleBuild from "../Tangible/Build/TangibleBuild";
 import TangibleOccupy from "../Tangible/Occupy/TangibleOccupy";
 import DigitalBuild from "../Digital/Build/DigitalBuild";
 import DigitalOccupy from "../Digital/Occupy/DigitalOccupy";
-import AboutTpl from "../Admin/AboutTpl";
+import AboutTpl from "../Etc/AboutTpl";
 
 import './primaryview.scss';
 
