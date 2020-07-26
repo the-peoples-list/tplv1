@@ -1,4 +1,11 @@
-import React, { Component } from 'react';
+import React  from 'react';
+//import {useState} from 'react';
+import TangibleBuild from "../Tangible/Build/TangibleBuild";
+import TangibleOccupy from "../Tangible/Occupy/TangibleOccupy";
+import DigitalBuild from "../Digital/Build/DigitalBuild";
+import DigitalOccupy from "../Digital/Occupy/DigitalOccupy";
+import AboutTpl from "../Admin/AboutTpl";
+
 import './primaryview.scss';
 
 export default class PrimaryView extends React.Component {
@@ -17,7 +24,41 @@ export default class PrimaryView extends React.Component {
 
 	renderSpecificView = () => {
 
+		const viewToSelect = !this.state.chosenView ? this.props.chosenView : this.state.chosenView;
+
+		switch (viewToSelect) {
+			case 'tangibleBuild':
+				return (
+					<TangibleBuild/>
+				)
+				break;
+
+			case 'digitalBuild':
+				return (
+					<DigitalBuild/>
+				)
+				break;
+
+			case 'digitalOccupy':
+				return (
+					<DigitalOccupy/>
+				)
+				break;
+
+			case 'aboutTpl':
+				return (
+					<AboutTpl/>
+				)
+				break;
+			default:
+				return (
+					<TangibleOccupy/>
+				)
+				break;
+		}
 	}
+
+
 
 	render()
 	{
@@ -26,6 +67,10 @@ export default class PrimaryView extends React.Component {
 			<div>
 				<h1>The People's List</h1>
 				<h2>A community driven resource for making change</h2>
+
+				<div>
+					{this.renderSpecificView()}
+				</div>
 			</div>
 		);
 	}
