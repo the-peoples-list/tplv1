@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTable } from 'react-table';
+import './table.scss';
 
 function Table({ columns, data }) {
 
@@ -12,19 +13,13 @@ function Table({ columns, data }) {
 	} = useTable({ columns, data })
 
 	return (
-		<table {...getTableProps()} style={{ border: 'solid 1px blue' }}>
+		<table {...getTableProps()}>
 			<thead>
 			{headerGroups.map(headerGroup => (
 				<tr {...headerGroup.getHeaderGroupProps()}>
 					{headerGroup.headers.map(column => (
 						<th
 							{...column.getHeaderProps()}
-							style={{
-								borderBottom: 'solid 3px red',
-								background: 'aliceblue',
-								color: 'black',
-								fontWeight: 'bold',
-							}}
 						>
 							{column.render('Header')}
 						</th>
@@ -41,11 +36,6 @@ function Table({ columns, data }) {
 							return (
 								<td
 									{...cell.getCellProps()}
-									style={{
-										padding: '10px',
-										border: 'solid 1px gray',
-										background: 'papayawhip',
-									}}
 								>
 									{cell.render('Cell')}
 								</td>

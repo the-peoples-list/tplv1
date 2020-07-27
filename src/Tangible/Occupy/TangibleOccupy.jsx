@@ -7,70 +7,51 @@ import Table from "../../Reusable/Table";
  * @returns {*}
  * @constructor
  */
-function TangibleOccupy() {
-	const columns = React.useMemo(
-		() => [
-			{
-				Header: 'Name',
-				columns: [
-					{
-						Header: 'First Name',
-						accessor: 'firstName',
-					},
-					{
-						Header: 'Last Name',
-						accessor: 'lastName',
-					},
-				],
-			},
-			{
-				Header: 'Info',
-				columns: [
-					{
-						Header: 'Age',
-						accessor: 'age',
-					},
-					{
-						Header: 'Visits',
-						accessor: 'visits',
-					},
-					{
-						Header: 'Status',
-						accessor: 'status',
-					},
-					{
-						Header: 'Profile Progress',
-						accessor: 'progress',
-					},
-				],
-			},
-		],
-		[]
-	)
+export default class TangibleOccupy extends React.Component {
 
-	const data = React.useMemo(
-		() => [
+	/**
+	 *  Constructor for PrimaryView component class.
+	 *
+	 *  @param {object} props The props that get passed
+	 */
+	constructor(props)
+	{
+		super(props);
+
+		this.state = {
+		};
+	}
+
+render ()
+{
+	const columns = [
 			{
-				col1: 'Hello',
-				col2: 'World',
+				Header: 'Event Name',
+				accessor: 'eventName', // accessor is the "key" in the data
 			},
 			{
-				col1: 'react-table',
-				col2: 'rocks',
+				Header: 'Event Time',
+				accessor: 'eventDate',
 			},
 			{
-				col1: 'whatever',
-				col2: 'you want',
+				Header: 'Event Location',
+				accessor: 'eventLocation',
 			},
-		],
-		[]
-	)
+			{
+				Header: 'Event Link',
+				accessor: 'referenceLink',
+			},
+			{
+				Header: 'Event Description',
+				accessor: 'eventDescription',
+			},
+		];
+	const data = this.props.data;
 
 	return (
 		<div>
-			<Table columns={columns} data={data} />
+			<Table columns={columns} data={data}/>
 		</div>
 	)
 }
-
-export default TangibleOccupy
+}
