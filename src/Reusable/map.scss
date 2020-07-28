@@ -1,3 +1,9 @@
 .tangible-occupy__view-map {
 	cursor: pointer;
 }
+
+#map {
+	height: 300px;
+	width: 700px;
+	overflow: auto !important;
+}
