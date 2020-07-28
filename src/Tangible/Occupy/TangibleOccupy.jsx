@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from "../../Reusable/Table";
+import MapComponent from '../../Reusable/Map';
 
 /**
  * This file serves to get and format the "tangible occupy" data that will then be formatted into the table component
@@ -19,12 +20,22 @@ export default class TangibleOccupy extends React.Component {
 		super(props);
 
 		this.state = {
+			showMap: false
 		};
+
 	}
 
-render ()
-{
-	const columns = [
+	toggleMap = () => {
+
+		console.log('hi');
+		this.setState(state => ({
+			showMap: !state.showMap
+		}));
+	}
+
+	render () {
+
+		const columns = [
 			{
 				Header: 'Event Name',
 				accessor: 'eventName', // accessor is the "key" in the data
@@ -46,12 +57,20 @@ render ()
 				accessor: 'eventDescription',
 			},
 		];
-	const data = this.props.data;
+		const data = this.props.data;
 
-	return (
-		<div>
-			<Table columns={columns} data={data}/>
-		</div>
-	)
-}
+		const mapStyle = {
+			position: 'relative'
+		}
+
+		return (
+			<React.Fragment>
+				<div className="tangible-occupy__view-map" onClick={() => this.toggleMap()}>View Map</div>
+				{this.state.showMap &&
+					<MapComponent style={mapStyle} data={data}/>
+				}
+				<Table columns={columns} data={data}/>
+			</React.Fragment>
+		)
+	}
 }

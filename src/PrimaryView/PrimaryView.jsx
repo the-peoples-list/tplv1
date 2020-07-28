@@ -116,14 +116,14 @@ export default class PrimaryView extends React.Component {
 	render() {
 		return (
 
-			<div>
+			<React.Fragment>
 				<h1>The People's List</h1>
 				<h2>A community driven resource for making change</h2>
 
 				<div>
 					{this.renderSpecificView()}
 				</div>
-			</div>
+			</React.Fragment>
 		);
 	}
 }
