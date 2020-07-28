@@ -45,7 +45,7 @@ function Table({ columns, data }) {
 									<td
 										{...cell.getCellProps()}
 									>
-										<a href={cell.value} rel="noopener" target="_blank">{cell.render('Cell')}</a>
+										<a href={cell.value} rel="noopener noreferrer" target="_blank">{cell.render('Cell')}</a>
 									</td>
 								)
 							} else {

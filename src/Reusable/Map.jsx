@@ -78,6 +78,8 @@ class MapComponent extends React.Component {
 							name={item.eventName}
 							position={{ lat: item.eventLocation[0], lng: item.eventLocation[1] }}
 							onClick={this.onMarkerClick}
+							location={item.referenceLink}
+							description={item.eventDescription}
 						/>
 				))}
 				<InfoWindow
@@ -85,7 +87,8 @@ class MapComponent extends React.Component {
 					visible={this.state.showingInfoWindow}
 				>
 					<div>
-						<div>{this.state.activeMarker.name}</div>
+						<a href={this.state.activeMarker.location} rel="noopener noreferrer" target="_blank">{this.state.activeMarker.name}</a>
+						<p>{this.state.activeMarker.description}</p>
 					</div>
 				</InfoWindow>
 			</Map>
