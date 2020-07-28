@@ -69,7 +69,7 @@ export default class PrimaryView extends React.Component {
 	componentDidUpdate(prevProps, prevState, snapshot)
 	{
 		if(prevState.data !== this.state.data){
-			console.log('again')
+			console.log()
 		}
 	}
 

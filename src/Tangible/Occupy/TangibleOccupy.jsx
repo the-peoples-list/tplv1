@@ -26,8 +26,6 @@ export default class TangibleOccupy extends React.Component {
 	}
 
 	toggleMap = () => {
-
-		console.log('hi');
 		this.setState(state => ({
 			showMap: !state.showMap
 		}));

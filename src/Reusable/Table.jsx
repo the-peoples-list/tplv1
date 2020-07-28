@@ -40,13 +40,23 @@ function Table({ columns, data }) {
 				return (
 					<tr {...row.getRowProps()}>
 						{row.cells.map(cell => {
-							return (
-								<td
-									{...cell.getCellProps()}
-								>
-									{cell.render('Cell')}
-								</td>
-							)
+							if (cell.column.Header == 'Event Link') {
+								return (
+									<td
+										{...cell.getCellProps()}
+									>
+										<a href={cell.value} rel="noopener" target="_blank">{cell.render('Cell')}</a>
+									</td>
+								)
+							} else {
+								return (
+									<td
+										{...cell.getCellProps()}
+									>
+										{cell.render('Cell')}
+									</td>
+								)
+							}
 						})}
 					</tr>
 				)
