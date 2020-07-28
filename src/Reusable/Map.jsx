@@ -5,7 +5,6 @@ import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
 class MapComponent extends React.Component {
 
 	componentDidMount() {
-		console.log(process.env.REACT_APP_GOOGLE_MAPS_API)
 	}
 
 	centerMoved(mapProps, map) {
