@@ -80,7 +80,7 @@ export default class TangibleOccupy extends React.Component {
 		let tableData = data.map((row, index) => {
 			const eventName = row.fields.eventName;
 			const eventDate = row.fields.eventDate;
-			const eventDescription = row.fields.eventDescription.content[0].content[0].value;
+			const eventDescription = !row.fields.eventDescription ? '' : row.fields.eventDescription.content[0].content[0].value;
 			const eventLocation = [row.fields.eventLocation.lat, row.fields.eventLocation.lon];
 			const referenceLink = row.fields.referenceLink.content[0].content[1].data.uri;
 			return {eventName: eventName, eventDate: eventDate, eventDescription: eventDescription, eventLocation: eventLocation, referenceLink: referenceLink}
