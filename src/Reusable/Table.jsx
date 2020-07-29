@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTable, useSortBy } from 'react-table';
+
 import './table.scss';
 
 function Table({ columns, data }) {
@@ -40,7 +41,7 @@ function Table({ columns, data }) {
 				return (
 					<tr {...row.getRowProps()}>
 						{row.cells.map(cell => {
-							if (cell.column.Header == 'Event Link') {
+							if (cell.column.Header === 'Event Link') {
 								return (
 									<td
 										{...cell.getCellProps()}
