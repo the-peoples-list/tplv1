@@ -37,30 +37,12 @@ export default class PrimaryView extends React.Component {
 		this.setState({
 			loading: true
 		})
-
-		client.getEntries().then((data) => {
-			this.setState({
-				data: data
-			})
-			this.renderTableData();
-
-		}).catch(console.error);
-
+		this.renderTableData();
 	}
 
 	renderTableData = () => {
 
-		let tableData = this.state.data.items.map((row, index) => {
-			const eventName = row.fields.eventName;
-			const eventDate = row.fields.eventDate;
-			const eventDescription = row.fields.eventDescription.content[0].content[0].value;
-			const eventLocation = [row.fields.eventLocation.lat, row.fields.eventLocation.lon];
-			const referenceLink = row.fields.referenceLink.content[0].content[1].data.uri;
-			return {eventName: eventName, eventDate: eventDate, eventDescription: eventDescription, eventLocation: eventLocation, referenceLink: referenceLink}
-		})
-
 		this.setState({
-			tableData: tableData,
 			loading: false,
 			chosenView: 'tangibleOccupy'
 		})
@@ -81,7 +63,7 @@ export default class PrimaryView extends React.Component {
 		switch (viewToSelect) {
 			case 'tangibleOccupy':
 				return (
-					<TangibleOccupy data={this.state.tableData}/>
+					<TangibleOccupy client={client}/>
 				)
 				break;
 			case 'tangibleBuild':

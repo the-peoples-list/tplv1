@@ -1,8 +1,24 @@
 import React from 'react';
 import './map.scss';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, InfoWindow, GoogleApiWrapper } from 'google-maps-react';
 
 class MapComponent extends React.Component {
+
+	/**
+	 *  Constructor for PrimaryView component class.
+	 *
+	 *  @param {object} props The props that get passed
+	 */
+	constructor(props)
+	{
+		super(props);
+
+		this.state = {
+			showingInfoWindow: false,
+			activeMarker: {},
+			selectedPlace: {},
+		};
+	}
 
 	componentDidMount() {
 	}
@@ -10,6 +26,22 @@ class MapComponent extends React.Component {
 	centerMoved(mapProps, map) {
 		// ...
 	}
+
+	onMapClicked = (props) => {
+		if (this.state.showingInfoWindow) {
+			this.setState({
+				showingInfoWindow: false,
+				activeMarker: null
+			})
+		}
+	};
+
+	onMarkerClick = (props, marker, e) =>
+		this.setState({
+			selectedPlace: props,
+			activeMarker: marker,
+			showingInfoWindow: true
+		});
 
 	render() {
 		const style = {
@@ -36,15 +68,29 @@ class MapComponent extends React.Component {
 				style={style}
 				containerStyle={containerStyle}
 				onDragend={this.centerMoved}
+				onClick={this.onMapClicked}
+				name={'Current location'}
 			>
 				{this.props.data.map((item,key) => (
-					<Marker
-						key={key}
-						title={item.eventName}
-						name={item.eventName}
-						position={{ lat: item.eventLocation[0], lng: item.eventLocation[1] }}
-					/>
+						<Marker
+							key={'marker' + key}
+							title={item.eventName}
+							name={item.eventName}
+							position={{ lat: item.eventLocation[0], lng: item.eventLocation[1] }}
+							onClick={this.onMarkerClick}
+							location={item.referenceLink}
+							description={item.eventDescription}
+						/>
 				))}
+				<InfoWindow
+					marker={this.state.activeMarker}
+					visible={this.state.showingInfoWindow}
+				>
+					<div>
+						<a href={this.state.activeMarker.location} rel="noopener noreferrer" target="_blank">{this.state.activeMarker.name}</a>
+						<p>{this.state.activeMarker.description}</p>
+					</div>
+				</InfoWindow>
 			</Map>
 		)
 	}
