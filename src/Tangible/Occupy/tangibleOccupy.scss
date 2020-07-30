@@ -1,0 +1,38 @@
+.tangible-occupy__view {
+	display: flex;
+	justify-content: space-between;
+	margin: 10px 0;
+	background-color: #e6e6e6;
+	padding: 5px;
+	border: 1px solid #c4c4c4;
+}
+.tangible-occupy__view-map {
+	height: 40px;
+	width: 100px;
+	border: 1px solid #c4c4c4;
+	border-radius: 3px;
+	background-color: white;
+	text-align: center;
+	vertical-align: middle;
+	padding-top: 10px;
+}
+
+.tangible-occupy__view-input,
+.tangible-occupy__view-select,
+.tangible-occupy__view-map {
+	width: 33%;
+	box-sizing: border-box;
+}
+
+input, select {
+	height: 40px !important;
+	border: 1px solid #c4c4c4;
+	padding-left: 5px;
+	width: 98%;
+	box-sizing: border-box;
+	border-radius: 3px;
+}
+
+select {
+	text-align: right;
+}
