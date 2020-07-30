@@ -59,7 +59,6 @@ export default class PrimaryView extends React.Component {
 
 		const viewToSelect = !this.state.chosenView ? this.props.chosenView : this.state.chosenView;
 
-		//console.log(this.state.data);
 		switch (viewToSelect) {
 			case 'tangibleOccupy':
 				return (
@@ -102,7 +101,7 @@ export default class PrimaryView extends React.Component {
 				<h1>The People's List</h1>
 				<h2>A community driven resource for making change</h2>
 
-				<div>
+				<div  className="primary-view__container">
 					{this.renderSpecificView()}
 				</div>
 			</React.Fragment>

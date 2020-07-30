@@ -18,13 +18,11 @@ class MapComponent extends React.Component {
 			activeMarker: {},
 			selectedPlace: {},
 		};
-	}
 
-	componentDidMount() {
 	}
 
 	centerMoved(mapProps, map) {
-		// ...
+		//
 	}
 
 	onMapClicked = (props) => {
@@ -62,10 +60,9 @@ class MapComponent extends React.Component {
 			<Map
 				google={this.props.google}
 				zoom={10}
-				initialCenter={{
-					lat: 40.650002, lng: -73.949997
-				}}
 				style={style}
+				initialCenter={this.props.coords}
+				center={this.props.coords}
 				containerStyle={containerStyle}
 				onDragend={this.centerMoved}
 				onClick={this.onMapClicked}
