@@ -1,6 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta&family=Open+Sans&display=swap');
 @import '~normalize.css';
 
+/* Extra small devices (phones, 600px and down)
+
+@media only screen and (max-width: 600px) {...}
+
+/* Small devices (portrait tablets and large phones, 600px and up)
+@media only screen and (min-width: 600px) {...}
+
+/* Medium devices (landscape tablets, 768px and up)
+@media only screen and (min-width: 768px) {...}
+
+/* Large devices (laptops/desktops, 992px and up)
+@media only screen and (min-width: 992px) {...}
+
+/* Extra large devices (large laptops and desktops, 1200px and up)
+
+@media only screen and (min-width: 1200px) {...}
+ */
+@import '../Reusable/_universal';
+
 body {
 	max-width: 1200px;
 	margin: 30px auto;
@@ -15,12 +34,35 @@ h1 {
 	font-family: 'Lexend Zetta', sans-serif;
 	font-size: 40px;
 	letter-spacing: -5px;
+	padding-top: 15px;
 }
 
 h2 {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 28px;
 	padding-left: 6px;
+}
+
+.primary-view__main {
+	position: relative;
+}
+
+.primary-view__hamburger:after {
+	content: '\22EE';
+	width: 50px;
+	height: 40px;
+	position: absolute;
+	color: black;
+	top: -27px;
+	left: 170px;
+	display: block;
+	font-size: 25px;
+	-webkit-transform:scale(10,1); /* Safari and Chrome */
+	-moz-transform:scale(10,1); /* Firefox */
+	-ms-transform:scale(10,1); /* IE 9 */
+	-o-transform:scale(10,1); /* Opera */
+	transform:scale(10,1); /* W3C */
+	cursor: pointer;
 }
 
 
