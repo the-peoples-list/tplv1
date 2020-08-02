@@ -1,5 +1,5 @@
 import React from 'react';
-import PrimaryView from "./PrimaryView/PrimaryView";
+import PrimaryView from "./components/PrimaryView/PrimaryView";
 import {
 	BrowserRouter as Router,
 	Switch,
