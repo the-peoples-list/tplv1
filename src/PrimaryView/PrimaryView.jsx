@@ -1,5 +1,5 @@
 import React  from 'react';
-//import {useState} from 'react';
+import MainNav from "../Etc/MainNav";
 import TangibleBuild from "../Tangible/Build/TangibleBuild";
 import TangibleOccupy from "../Tangible/Occupy/TangibleOccupy";
 import DigitalBuild from "../Digital/Build/DigitalBuild";
@@ -29,7 +29,8 @@ export default class PrimaryView extends React.Component {
 
 		this.state = {
 			loading: false,
-			data: [{eventName: '', eventDate: '', eventDescription: '', eventLocation: '', referenceLink: ''}]
+			data: [{eventName: '', eventDate: '', eventDescription: '', eventLocation: '', referenceLink: ''}],
+			width: window.innerWidth > 768 ? false : true
 		};
 	}
 
@@ -38,6 +39,15 @@ export default class PrimaryView extends React.Component {
 			loading: true
 		})
 		this.renderTableData();
+		window.addEventListener('resize', this.updateDimensions);
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.updateDimensions);
+	}
+
+	updateDimensions = () => {
+		this.setState({width: window.innerWidth > 768 ? false : true });
 	}
 
 	renderTableData = () => {
@@ -48,11 +58,22 @@ export default class PrimaryView extends React.Component {
 		})
 	}
 
-	componentDidUpdate(prevProps, prevState, snapshot)
-	{
+	componentDidUpdate(prevProps, prevState, snapshot) {
 		if(prevState.data !== this.state.data){
 			console.log()
 		}
+	}
+
+	setChosenView = (view) => {
+		this.setState({
+			chosenView: view
+		})
+	}
+
+	toggleMobile = () => {
+		this.setState(state => ({
+			mobileNavOpen: !state.mobileNavOpen
+		}))
 	}
 
 	renderSpecificView = () => {
@@ -95,16 +116,25 @@ export default class PrimaryView extends React.Component {
 
 
 	render() {
+
 		return (
 
-			<React.Fragment>
+			<div className="primary-view__main">
+				{this.state.width === true &&
+					<div className={'primary-view__hamburger'} onClick={() => this.toggleMobile()} />
+				}
+				<MainNav
+					setChosenView={this.setChosenView}
+					mobileNav={this.state.width}
+					mobileNavOpen={this.state.mobileNavOpen}
+				/>
 				<h1>The People's List</h1>
 				<h2>A community driven resource for making change</h2>
 
 				<div  className="primary-view__container">
 					{this.renderSpecificView()}
 				</div>
-			</React.Fragment>
+			</div>
 		);
 	}
 }
