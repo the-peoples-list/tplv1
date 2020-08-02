@@ -7,7 +7,7 @@
 	border: 1px solid #c4c4c4;
 	border-radius: 3px;
 }
-.tangible-occupy__view-map {
+.tangible-occupy__view-map, .tangible-occupy__content-entry {
 	height: 40px;
 	width: 100px;
 	border: 1px solid #c4c4c4;
@@ -16,6 +16,13 @@
 	text-align: center;
 	vertical-align: middle;
 	padding-top: 10px;
+}
+
+.tangible-occupy__content-entry {
+	border: 2px solid #c4c4c4;
+	background-color: #e6e6e6;
+	font-weight: bold;
+	cursor: pointer;
 }
 
 .tangible-occupy__view-input,

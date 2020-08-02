@@ -3,7 +3,10 @@ import Table from "../../Reusable/Table";
 import MapComponent from '../../Reusable/Map';
 import moment from "moment";
 import ApiService from "../../Reusable/ApiService";
+import Modal from "react-modal";
+import ContentEntry from "../../Reusable/ContentEntry/ContentEntry";
 import './tangibleOccupy.scss';
+
 
 /**
  * This file serves to get and format the "tangible occupy" data that will then be formatted into the table component
@@ -26,7 +29,8 @@ export default class TangibleOccupy extends React.Component {
 			showMap: false,
 			data: [],
 			loading: false,
-			coords: {lat: 40.650002, lng: -73.949997}
+			coords: {lat: 40.650002, lng: -73.949997},
+			showContentEntry: false
 		};
 
 	}
@@ -98,6 +102,12 @@ export default class TangibleOccupy extends React.Component {
 		}));
 	}
 
+	toggleContentEntry = () => {
+		this.setState(state => ({
+			showContentEntry: !state.showContentEntry
+		}));
+	}
+
 	/**
 	 * Function that conditionally renders dropdown for filtering.
 	 */
@@ -141,13 +151,13 @@ export default class TangibleOccupy extends React.Component {
 					type="text"
 					onChange={ this.handleChange }
 					name="getMyLocation"
-					//className="tangible-occupy__location-input-enter"
 					value={this.state.myZip}
 					placeholder='Enter zip code'
 				/>
 			</div>
 		)
 	}
+
 	render () {
 
 		const columns = [
@@ -177,8 +187,31 @@ export default class TangibleOccupy extends React.Component {
 			position: 'relative'
 		}
 
+		const customStyles = {
+			content : {
+				top: '30%',
+				left: '50%',
+				right: 'auto',
+				bottom: 'auto',
+				marginRight: '-50%',
+				transform: 'translate(-50%, -50%)',
+				width: '500px'
+			},
+			overlay: {
+				position: "absolute",
+				top: "0",
+				bottom: "0",
+				left: "0",
+				right: "0",
+				backgroundColor: "rgba(0, 0, 0, 0.5)",
+				zIndex: "99",
+				minHeight: "30px",
+			},
+		};
+
 		return (
 			<React.Fragment>
+				<div className="tangible-occupy__content-entry" onClick={() => this.toggleContentEntry()}>Submit an Event</div>
 				<div className="tangible-occupy__view">
 					{this.renderLocationInput()}
 					<div className="tangible-occupy__view-map" onClick={() => this.toggleMap()}>View Map</div>
@@ -189,7 +222,20 @@ export default class TangibleOccupy extends React.Component {
 					<MapComponent style={mapStyle} data={this.state.data} coords={this.state.coords} />
 				}
 				<Table columns={columns} data={this.state.data} />
+
+				<Modal
+					isOpen={this.state.showContentEntry}
+					closeModal={() => this.toggleContentEntry()}
+					onRequestClose={() => this.toggleContentEntry()}
+					style={customStyles}
+					contentLabel="Content Entry Modal"
+					shouldCloseOnOverlayClick={true}
+				>
+					<ContentEntry client={this.props.client} contentTypeId={'tangibleOccupy'} closeModal={this.toggleContentEntry} />
+				</Modal>
 			</React.Fragment>
 		)
 	}
 }
+
+Modal.setAppElement('body');
