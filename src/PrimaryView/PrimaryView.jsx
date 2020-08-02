@@ -30,7 +30,8 @@ export default class PrimaryView extends React.Component {
 		this.state = {
 			loading: false,
 			data: [{eventName: '', eventDate: '', eventDescription: '', eventLocation: '', referenceLink: ''}],
-			width: window.innerWidth > 768 ? false : true
+			width: window.innerWidth > 768 ? false : true,
+			mobileNavOpen: false
 		};
 	}
 

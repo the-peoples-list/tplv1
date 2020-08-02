@@ -4,7 +4,7 @@ import './mainNav.scss';
 function MainNav ({mobileNav, mobileNavOpen, setChosenView}){
 
 		return (
-				<div className={!mobileNav && mobileNavOpen === false ? "main-nav" : mobileNavOpen === true ? "main-nav__mobile" : "main-nav main-nav__mobile-hidden"}>
+				<div className={!mobileNav && mobileNavOpen === false ? "main-nav" : mobileNavOpen === true && mobileNav ? "main-nav__mobile" : "main-nav__mobile-hidden"}>
 					<div className="main-nav__nav-item" onClick={() => setChosenView('tangibleBuild')}>
 						<p className="main-nav__nav-item-title">Tangible Build</p>
 						<p className="main-nav__nav-item-description">(coming soon)</p>
