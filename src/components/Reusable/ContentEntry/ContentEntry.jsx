@@ -18,7 +18,6 @@ export default class ContentEntry extends React.Component {
 				eventLocation: {},
 				eventDate: '',
 				referenceLink: '',
-				entrantsEmail: '',
 				tags: [],
 
 			},
@@ -49,8 +48,9 @@ export default class ContentEntry extends React.Component {
 		})
 
 		console.log(this.state.fields)
+		const newEntry = {fields: {eventName: {"en-US": this.state.fields.eventName}, eventDescription: {"en-US": this.state.fields.eventDescription}, eventLocation: {"en-US": this.state.fields.eventLocation}, eventDate: {"en-US": this.state.fields.eventDate}, referenceLink: {"en-US": this.state.fields.referenceLink}, tags: [],}}
 		client.getSpace(process.env.REACT_APP_CONTENTFUL_SPACE)
-			   .then((space) => space.createEntry(this.props.contentTypeId, {fields: this.state.fields}))
+			   .then((space) => space.createEntry(this.props.contentTypeId, newEntry))
 			   .then((entry) => console.log(entry))
 			   .catch(console.error)
 
